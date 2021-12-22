@@ -45,7 +45,7 @@ socket.on("chat", function(data) {
 
 socket.on('typing', function(data) {
     //escribe y muestra el dato
-    feedback.innerHTML = '<p><em>' + data.handle + '  esta escribiendo...</em><p>';
+    feedback.innerHTML = '<p><em>' + data.handle + '  Está escribiendo...</em><p>';
     $("#feedback").fadeIn();
     //elimina el timeout de limpieza y crea uno nuevo
     //cuando se acaba el timeout oculta el feedback
@@ -65,21 +65,4 @@ socket.on('playPause', function(data) {
         song.play();
         buttonPlayStop.html('PAUSE');
     }
-});
-
-socket.on('moveUp', function(data) {
-    player.move('up');
-    player.show();
-});
-socket.on('moveLeft', function(data) {
-    player.move('left');
-    player.show();
-});
-socket.on('moveRight', function(data) {
-    player.move('right');
-    player.show();
-});
-socket.on('moveDown', function(data) {
-    player.move('down');
-    player.show();
 });
