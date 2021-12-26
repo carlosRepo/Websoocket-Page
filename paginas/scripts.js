@@ -23,16 +23,7 @@ message.addEventListener('keypress', function() {
     });
 });
 
-function playStop() {
-    socket.emit('playPause', {
-        handle: handle.value
-    });
-}
 
-function keyPressed() {
-    //move up
-
-}
 //variable para crear un timer de limpieza del feedback
 var clearFeedback;
 //inicializa el feedback como oculto para que no aparesca apenas se escribe en el
@@ -45,7 +36,7 @@ socket.on("chat", function(data) {
 
 socket.on('typing', function(data) {
     //escribe y muestra el dato
-    feedback.innerHTML = '<p><em>' + data.handle + '  Está escribiendo...</em><p>';
+    feedback.innerHTML = '<p><em>' + data.handle + '  está escribiendo...</em><p>';
     $("#feedback").fadeIn();
     //elimina el timeout de limpieza y crea uno nuevo
     //cuando se acaba el timeout oculta el feedback
@@ -55,14 +46,4 @@ socket.on('typing', function(data) {
     clearFeedback = setTimeout(function() {
         $("#feedback").fadeOut()
     }, 1800);
-});
-
-socket.on('playPause', function(data) {
-    if (song.isPlaying()) {
-        song.pause();
-        buttonPlayStop.html('PLAY');
-    } else {
-        song.play();
-        buttonPlayStop.html('PAUSE');
-    }
 });
